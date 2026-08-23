@@ -1,0 +1,3193 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>StecyMaster MCPE Forum</title>
+
+<style>
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:Arial,sans-serif;
+}
+
+body{
+  background:#101010;
+  color:white;
+}
+
+header{
+  padding:18px;
+  background:#181818;
+  position:sticky;
+  top:0;
+  z-index:10;
+  box-shadow:0 3px 15px #000;
+}
+
+.logo{
+display:flex;
+align-items:center;
+gap:10px;
+font-size:24px;
+font-weight:bold;
+}
+
+.logo-head{
+width:42px;
+height:42px;
+object-fit:cover;
+border-radius:6px;
+image-rendering:pixelated;
+}
+
+.logo-orange{
+    color:#ff9800;
+    font-weight:bold;
+
+    text-shadow:
+    0 0 5px #ff9800,
+    0 0 15px #ff9800;
+}
+
+.logo span:not(.logo-orange){
+color:white;
+}
+
+.logo small{
+font-size:14px;
+color:#aaa;
+margin-left:2px;
+}
+
+.search-box{
+  margin-top:15px;
+  display:flex;
+  gap:10px;
+}
+
+.search-box input{
+  width:100%;
+  padding:12px;
+  border:none;
+  border-radius:10px;
+  outline:none;
+  background:#252525;
+  color:white;
+}
+
+.search-box select{
+  padding:12px;
+  border:none;
+  border-radius:10px;
+  background:#252525;
+  color:white;
+}
+
+.hero{
+  padding:25px 18px;
+  background:linear-gradient(135deg,#14532d,#111);
+}
+
+.hero h1{
+  font-size:25px;
+  margin-bottom:8px;
+}
+
+.hero p{
+  color:#ddd;
+  font-size:14px;
+}
+
+.tabs{
+  display:flex;
+  overflow-x:auto;
+  gap:10px;
+  padding:15px;
+}
+
+.tabs button{
+  border:none;
+  padding:10px 15px;
+  border-radius:20px;
+  background:#222;
+  color:white;
+  white-space:nowrap;
+}
+
+.tabs button.active{
+  background:#22c55e;
+  color:#000;
+  font-weight:bold;
+}
+
+.container{
+  padding:15px;
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(160px,1fr));
+  gap:15px;
+}
+
+/* ALL CATEGORY LIST MODE */
+.container.list-mode{
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+}
+
+.list-item{
+  display:flex;
+  background:#1b1b1b;
+  border:1px solid #2c2c2c;
+  border-radius:16px;
+  overflow:hidden;
+  box-shadow:0 5px 15px #0008;
+}
+
+.list-item img{
+  width:112px;
+  height:112px;
+  object-fit:cover;
+  background:#333;
+  flex-shrink:0;
+}
+
+.list-info{
+  flex:1;
+  padding:10px;
+  min-width:0;
+}
+
+.list-info h3{
+  font-size:16px;
+  margin-bottom:5px;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+}
+
+.list-info p{
+  font-size:12px;
+  color:#bbb;
+  line-height:1.45;
+  margin-bottom:8px;
+  display:-webkit-box;
+  -webkit-line-clamp:2;
+  -webkit-box-orient:vertical;
+  overflow:hidden;
+}
+
+.list-meta{
+  display:flex;
+  flex-wrap:wrap;
+  gap:6px;
+  margin-bottom:8px;
+}
+
+.list-tag{
+  display:inline-block;
+  font-size:11px;
+  background:#ff9800;
+  color:#000;
+  padding:4px 8px;
+  border-radius:8px;
+  font-weight:bold;
+}
+
+.list-version{
+  display:inline-block;
+  font-size:11px;
+  background:#333;
+  color:#ddd;
+  padding:4px 8px;
+  border-radius:8px;
+}
+
+.list-actions{
+  display:flex;
+  gap:7px;
+}
+
+.list-actions button{
+  flex:1;
+  padding:8px;
+  border:none;
+  border-radius:9px;
+  font-size:11px;
+  font-weight:bold;
+  cursor:pointer;
+}
+
+@media(max-width:380px){
+  .list-item img{
+    width:98px;
+    height:108px;
+  }
+
+  .list-info h3{
+    font-size:14px;
+  }
+
+  .list-actions button{
+    padding:7px;
+    font-size:10px;
+  }
+}
+
+.card{
+  background:#1b1b1b;
+  border-radius:16px;
+  overflow:hidden;
+  box-shadow:0 5px 15px #0008;
+  border:1px solid #2a2a2a;
+}
+
+.card img{
+  width:100%;
+  height:120px;
+  object-fit:cover;
+  background:#333;
+}
+
+.info{
+  padding:12px;
+}
+
+.info h3{
+  font-size:16px;
+  margin-bottom:6px;
+}
+
+.info p{
+  font-size:12px;
+  color:#bbb;
+  margin-bottom:8px;
+}
+
+.tag{
+  display:inline-block;
+  font-size:11px;
+  background:#22c55e;
+  color:#000;
+  padding:4px 8px;
+  border-radius:10px;
+  margin-bottom:10px;
+  font-weight:bold;
+}
+
+.btns{
+  display:flex;
+  gap:7px;
+}
+
+.btns a,
+.btns button{
+  text-decoration:none;
+  text-align:center;
+  flex:1;
+  padding:9px;
+  border-radius:9px;
+  font-size:12px;
+  font-weight:bold;
+}
+
+.download{
+  background:#22c55e;
+  color:#000;
+  border:none;
+  cursor:pointer;
+  border-radius:9px;
+  font-size:12px;
+  font-weight:bold;
+  flex:1;
+  padding:9px;
+}
+
+.video{
+  background:#333;
+  color:white;
+}
+
+.empty{
+  text-align:center;
+  color:#aaa;
+  padding:30px;
+}
+
+
+.detailBtn{
+  border:none;
+  background:#333;
+  color:white;
+  border-radius:9px;
+  font-size:12px;
+  font-weight:bold;
+  flex:1;
+  padding:9px;
+}
+
+.modal{
+  display:none;
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.78);
+  z-index:99;
+  padding:18px;
+  overflow-y:auto;
+}
+
+.modal-box{
+  background:#1b1b1b;
+  max-width:460px;
+  margin:35px auto;
+  border-radius:18px;
+  overflow:hidden;
+  border:1px solid #333;
+  box-shadow:0 10px 35px #000;
+}
+
+.modal-box img{
+  width:100%;
+  height:190px;
+  object-fit:cover;
+  background:#333;
+}
+
+.modal-content{
+  padding:16px;
+}
+
+.modal-content h2{
+  font-size:22px;
+  margin-bottom:8px;
+  color:#22c55e;
+}
+
+.modal-content .modal-tag{
+  display:inline-block;
+  font-size:11px;
+  background:#22c55e;
+  color:#000;
+  padding:5px 9px;
+  border-radius:12px;
+  margin-bottom:12px;
+  font-weight:bold;
+}
+
+.modal-content h3{
+  font-size:15px;
+  margin:12px 0 6px;
+  color:#fff;
+}
+
+.modal-content p,
+.modal-content li{
+  font-size:13px;
+  color:#ddd;
+  line-height:1.55;
+}
+
+.modal-content ol{
+  padding-left:18px;
+  margin-bottom:12px;
+}
+
+.modal-actions{
+  display:flex;
+  gap:8px;
+  margin-top:14px;
+}
+
+.modal-actions a,
+.modal-actions button{
+  flex:1;
+  text-align:center;
+  text-decoration:none;
+  padding:12px;
+  border-radius:10px;
+  border:none;
+  font-size:13px;
+  font-weight:bold;
+}
+
+.closeBtn{
+  background:#ef4444;
+  color:white;
+}
+
+footer{
+  text-align:center;
+  padding:20px;
+  color:#777;
+  font-size:12px;
+}
+
+/* SIDEBAR MENU */
+.header-row{
+  display:flex;
+  align-items:center;
+  gap:12px;
+}
+
+.menu-toggle{
+  width:38px;
+  height:38px;
+  border:none;
+  border-radius:10px;
+  background:#252525;
+  color:#fff;
+  cursor:pointer;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  flex-shrink:0;
+}
+
+.menu-toggle span{
+  display:block;
+  width:19px;
+  height:2px;
+  background:#fff;
+  position:relative;
+  border-radius:10px;
+}
+
+.menu-toggle span::before,
+.menu-toggle span::after{
+  content:"";
+  position:absolute;
+  left:0;
+  width:19px;
+  height:2px;
+  background:#fff;
+  border-radius:10px;
+}
+
+.menu-toggle span::before{
+  top:-6px;
+}
+
+.menu-toggle span::after{
+  top:6px;
+}
+
+.sidebar-overlay{
+  display:none;
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.65);
+  z-index:98;
+}
+
+.sidebar-overlay.show{
+  display:block;
+}
+
+.sidebar{
+  position:fixed;
+  top:0;
+  left:-285px;
+  width:275px;
+  height:100%;
+  background:#181818;
+  z-index:99;
+  box-shadow:8px 0 25px #000;
+  transition:.28s ease;
+  overflow-y:auto;
+  border-right:1px solid #2a2a2a;
+}
+
+.sidebar.show{
+  left:0;
+}
+
+.sidebar-head{
+  padding:18px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  border-bottom:1px solid #2a2a2a;
+}
+
+.sidebar-head h2{
+  font-size:20px;
+  color:#22c55e;
+}
+
+.sidebar-close{
+  border:none;
+  background:#252525;
+  color:#fff;
+  width:34px;
+  height:34px;
+  border-radius:9px;
+  font-size:18px;
+  cursor:pointer;
+}
+
+.sidebar-body{
+  padding:16px;
+}
+
+.sidebar-section{
+  margin-bottom:18px;
+}
+
+.sidebar-section h3{
+  font-size:13px;
+  color:#22c55e;
+  margin-bottom:10px;
+  text-transform:uppercase;
+  letter-spacing:.5px;
+}
+
+.sidebar-btn,
+.sidebar-link{
+  width:100%;
+  display:block;
+  text-decoration:none;
+  border:none;
+  background:#252525;
+  color:#fff;
+  padding:12px;
+  border-radius:12px;
+  margin-bottom:9px;
+  font-size:14px;
+  text-align:left;
+  cursor:pointer;
+}
+
+.sidebar-link{
+  color:#ddd;
+}
+
+.sidebar-info{
+  background:#101010;
+  border:1px solid #2a2a2a;
+  border-radius:12px;
+  padding:12px;
+  color:#bbb;
+  font-size:13px;
+  line-height:1.6;
+}
+
+.search-wrap{
+  position:relative;
+  width:100%;
+}
+
+.search-icon{
+  position:absolute;
+  left:12px;
+  top:50%;
+  transform:translateY(-50%);
+  width:18px;
+  height:18px;
+  color:#888;
+  pointer-events:none;
+}
+
+.search-wrap input{
+  padding-left:38px;
+}
+
+
+
+/* PREMIUM HEADER + CATEGORY CARDS */
+header{
+  padding:16px;
+  background:#101010;
+}
+
+.header-row{
+  background:#2d4052;
+  border-radius:26px;
+  padding:14px 16px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  box-shadow:0 8px 22px rgba(0,0,0,.35);
+}
+
+.logo{
+  flex:1;
+  min-width:0;
+}
+
+.logo small{
+  white-space:nowrap;
+}
+
+.menu-toggle{
+  order:2;
+  width:54px;
+  height:54px;
+  border:none;
+  border-radius:18px;
+  background:transparent;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  gap:7px;
+  cursor:pointer;
+  flex-shrink:0;
+}
+
+.menu-toggle div{
+  width:30px;
+  height:4px;
+  background:#fff;
+  border-radius:30px;
+}
+
+.menu-toggle span,
+.menu-toggle span::before,
+.menu-toggle span::after{
+  display:none;
+}
+
+.search-box{
+  margin-top:16px;
+}
+
+.search-wrap input,
+.search-box select{
+  border-radius:16px;
+  background:#1b1b1b;
+  border:1px solid #2e2e2e;
+}
+
+.category-scroll{
+  display:flex;
+  gap:10px;
+  overflow-x:auto;
+  padding:12px 14px;
+  scroll-snap-type:x mandatory;
+  -webkit-overflow-scrolling:touch;
+}
+
+.category-scroll::-webkit-scrollbar{
+  display:none;
+}
+
+.category-card{
+  min-width:88px;
+  height:84px;
+  background:#181818;
+  border:2px solid #2d2d2d;
+  border-radius:18px;
+  color:#e5e7eb;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  gap:7px;
+  flex-shrink:0;
+  scroll-snap-align:start;
+  cursor:pointer;
+  box-shadow:0 4px 12px rgba(0,0,0,.24);
+  transition:.2s ease;
+}
+
+.category-card.active{
+  background:#e9f7ff;
+  border-color:#18a7d8;
+  color:#18a7d8;
+  box-shadow:0 8px 22px rgba(24,167,216,.22);
+}
+
+.category-card:active{
+  transform:scale(.97);
+}
+
+.cat-icon{
+  width:26px;
+  height:26px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+.cat-icon svg{
+  width:26px;
+  height:26px;
+}
+
+.category-card span{
+  font-size:12px;
+  font-weight:700;
+}
+
+.tabs{display:none;}
+
+@media(max-width:380px){
+  .logo{font-size:20px;}
+  .logo-head{width:38px;height:38px;}
+  .menu-toggle{width:48px;height:48px;}
+  .category-card{min-width:82px;height:78px;}
+  .category-card span{font-size:11px;}
+  .cat-icon,.cat-icon svg{width:24px;height:24px;}
+}
+
+
+/* BANNER SLIDER - ORANGE MINECRAFT STYLE */
+.banner-slider{
+  position:relative;
+  width:100%;
+  overflow:hidden;
+  padding:20px 0 22px;
+  background:
+    radial-gradient(circle at 15% 10%, rgba(255,255,255,.35), transparent 26%),
+    radial-gradient(circle at 90% 15%, rgba(255,236,160,.38), transparent 28%),
+    linear-gradient(135deg,#ff9800 0%,#ffb300 45%,#ff6f00 100%);
+}
+
+/* soft minecraft grid */
+.banner-slider::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background-image:
+    linear-gradient(rgba(255,255,255,.11) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,.11) 1px, transparent 1px);
+  background-size:38px 38px;
+  opacity:.55;
+  pointer-events:none;
+}
+
+/* warm glow */
+.banner-slider::after{
+  content:"";
+  position:absolute;
+  width:360px;
+  height:360px;
+  left:-130px;
+  top:-150px;
+  background:#fff176;
+  filter:blur(120px);
+  opacity:.45;
+  pointer-events:none;
+}
+
+.slides{
+  position:relative;
+  z-index:2;
+  width:calc(100% - 28px);
+  height:180px;
+  margin:0 auto;
+  border-radius:24px;
+  overflow:hidden;
+  box-shadow:0 12px 30px rgba(80,35,0,.35);
+  touch-action:pan-y;
+}
+
+.slide{
+  position:absolute;
+  inset:0;
+  opacity:0;
+  transform:scale(1.02);
+  transition:opacity .45s ease, transform .45s ease;
+  pointer-events:none;
+}
+
+.slide.active{
+  opacity:1;
+  transform:scale(1);
+  pointer-events:auto;
+}
+
+.slide img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  display:block;
+}
+
+/* text banner hidden */
+.slide-overlay{
+  display:none;
+}
+
+.dots{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:8px;
+  margin-top:13px;
+  position:relative;
+  z-index:2;
+}
+
+.dot{
+  width:9px;
+  height:9px;
+  border:none;
+  border-radius:50%;
+  background:rgba(255,255,255,.55);
+  padding:0;
+  transition:.25s ease;
+}
+
+.dot.active{
+  width:28px;
+  border-radius:20px;
+  background:#fff;
+  box-shadow:0 3px 10px rgba(0,0,0,.18);
+}
+
+@media(max-width:380px){
+  .banner-slider{padding:17px 0 19px;}
+  .slides{height:160px;border-radius:20px;}
+}
+
+
+
+/* PREMIUM DOWNLOAD MANAGER */
+.download-manager-box{
+  max-width:420px;
+  margin:60px auto;
+  border-radius:22px;
+  background:#151515;
+  border:1px solid #333;
+  box-shadow:0 15px 45px rgba(0,0,0,.65);
+  overflow:hidden;
+}
+
+.download-manager-head{
+  padding:16px;
+  background:linear-gradient(135deg,#ff9800,#ffb300,#ff6f00);
+  color:#111;
+}
+
+.download-manager-head h2{
+  font-size:20px;
+  margin-bottom:4px;
+}
+
+.download-manager-head p{
+  font-size:12px;
+  font-weight:bold;
+  opacity:.85;
+}
+
+.download-manager-body{
+  padding:16px;
+}
+
+.dm-file{
+  font-size:15px;
+  font-weight:bold;
+  margin-bottom:6px;
+  color:#fff;
+  word-break:break-word;
+}
+
+.dm-status{
+  color:#ffb300;
+  font-size:13px;
+  margin-bottom:12px;
+}
+
+.dm-progress-wrap{
+  width:100%;
+  height:16px;
+  background:#2a2a2a;
+  border-radius:30px;
+  overflow:hidden;
+  border:1px solid #383838;
+}
+
+.dm-progress-bar{
+  width:0%;
+  height:100%;
+  background:linear-gradient(90deg,#ff9800,#ffc107);
+  border-radius:30px;
+  transition:.18s linear;
+}
+
+.dm-percent{
+  margin-top:8px;
+  font-size:18px;
+  font-weight:bold;
+  color:#fff;
+}
+
+.dm-info-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px;
+  margin-top:12px;
+}
+
+.dm-info-card{
+  background:#202020;
+  border:1px solid #333;
+  padding:10px;
+  border-radius:14px;
+}
+
+.dm-info-card span{
+  display:block;
+  color:#999;
+  font-size:11px;
+  margin-bottom:4px;
+}
+
+.dm-info-card b{
+  font-size:13px;
+  color:#fff;
+}
+
+.dm-actions{
+  display:flex;
+  gap:8px;
+  margin-top:14px;
+}
+
+.dm-actions button{
+  flex:1;
+  padding:12px;
+  border:none;
+  border-radius:12px;
+  font-weight:bold;
+  cursor:pointer;
+}
+
+.dm-cancel{
+  background:#ef4444;
+  color:#fff;
+}
+
+.dm-close{
+  background:#333;
+  color:#fff;
+}
+
+.dm-note{
+  margin-top:10px;
+  font-size:11px;
+  color:#999;
+  line-height:1.4;
+}
+
+
+/* STECYMASTER SKIN SPLASH SCREEN */
+body.splash-lock{
+  overflow:hidden;
+}
+
+#stecySplash{
+  position:fixed;
+  inset:0;
+  z-index:999999;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  overflow:hidden;
+  background:
+    radial-gradient(circle at 50% 34%, rgba(255,213,79,.55), transparent 25%),
+    radial-gradient(circle at 15% 10%, rgba(255,255,255,.22), transparent 26%),
+    radial-gradient(circle at 90% 15%, rgba(255,236,160,.28), transparent 28%),
+    linear-gradient(135deg,#ff9800 0%,#ffb300 42%,#ff6f00 100%);
+  transition:opacity .65s ease, visibility .65s ease;
+}
+
+#stecySplash.hide{
+  opacity:0;
+  visibility:hidden;
+}
+
+#stecySplash::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background-image:
+    linear-gradient(rgba(255,255,255,.12) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,.12) 1px, transparent 1px);
+  background-size:38px 38px;
+  opacity:.5;
+}
+
+#stecySplash::after{
+  content:"";
+  position:absolute;
+  width:420px;
+  height:420px;
+  left:50%;
+  top:42%;
+  transform:translate(-50%,-50%);
+  background:#fff176;
+  filter:blur(120px);
+  opacity:.45;
+}
+
+.splash-pixel{
+  position:absolute;
+  width:12px;
+  height:12px;
+  background:rgba(255,255,255,.28);
+  border-radius:3px;
+  animation:splashFloat 4s ease-in-out infinite;
+}
+
+.splash-pixel.p1{left:10%;top:18%;animation-delay:.1s;}
+.splash-pixel.p2{left:82%;top:22%;animation-delay:.6s;}
+.splash-pixel.p3{left:18%;top:72%;animation-delay:1.1s;}
+.splash-pixel.p4{left:74%;top:78%;animation-delay:1.7s;}
+.splash-pixel.p5{left:50%;top:12%;animation-delay:2.1s;}
+
+.splash-card{
+  position:relative;
+  z-index:2;
+  width:min(86vw,360px);
+  padding:28px 22px 24px;
+  border-radius:28px;
+  text-align:center;
+  background:rgba(16,16,16,.28);
+  border:1px solid rgba(255,255,255,.24);
+  box-shadow:0 18px 55px rgba(75,35,0,.38);
+  backdrop-filter:blur(8px);
+}
+
+.splash-avatar-wrap{
+  width:150px;
+  height:150px;
+  margin:0 auto 18px;
+  padding:8px;
+  border-radius:26px;
+  background:linear-gradient(135deg,#ffd54f,#ff9800,#ff6f00);
+  box-shadow:
+    0 0 0 4px rgba(255,255,255,.14),
+    0 0 28px rgba(255,193,7,.7),
+    0 16px 32px rgba(0,0,0,.28);
+  animation:splashAvatarFloat 2.4s ease-in-out infinite;
+}
+
+.splash-avatar{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  border-radius:18px;
+  image-rendering:pixelated;
+  display:block;
+  background:#111;
+}
+
+.splash-title{
+  font-size:34px;
+  font-weight:900;
+  letter-spacing:.5px;
+  color:#fff;
+  text-shadow:0 4px 14px rgba(0,0,0,.35);
+}
+
+.splash-title span{
+  color:#ffeb3b;
+  text-shadow:0 0 10px rgba(255,235,59,.85);
+}
+
+.splash-subtitle{
+  margin-top:5px;
+  font-size:13px;
+  font-weight:700;
+  letter-spacing:3px;
+  color:#fff7cc;
+}
+
+.splash-loading-text{
+  margin-top:22px;
+  font-size:13px;
+  font-weight:800;
+  letter-spacing:2px;
+  color:#fff;
+}
+
+.splash-progress{
+  width:100%;
+  height:14px;
+  margin-top:12px;
+  background:rgba(55,25,0,.42);
+  border:1px solid rgba(255,255,255,.28);
+  border-radius:99px;
+  overflow:hidden;
+}
+
+.splash-progress-fill{
+  width:0%;
+  height:100%;
+  border-radius:99px;
+  background:linear-gradient(90deg,#fff176,#ffc107,#ff9800);
+  box-shadow:0 0 16px rgba(255,235,59,.75);
+  animation:splashLoad 13s linear forwards;
+}
+
+.splash-percent{
+  margin-top:9px;
+  font-size:12px;
+  color:#fff8d5;
+  font-weight:700;
+}
+
+.splash-version{
+  margin-top:16px;
+  font-size:11px;
+  color:rgba(255,255,255,.72);
+  letter-spacing:1.5px;
+}
+
+@keyframes splashLoad{
+  from{width:0%;}
+  to{width:100%;}
+}
+
+@keyframes splashAvatarFloat{
+  0%,100%{transform:translateY(0) scale(1);}
+  50%{transform:translateY(-8px) scale(1.03);}
+}
+
+@keyframes splashFloat{
+  0%,100%{transform:translateY(0) rotate(0); opacity:.28;}
+  50%{transform:translateY(-18px) rotate(10deg); opacity:.65;}
+}
+
+@media(max-width:380px){
+  .splash-card{width:88vw;padding:24px 18px 22px;}
+  .splash-avatar-wrap{width:132px;height:132px;}
+  .splash-title{font-size:29px;}
+}
+
+
+
+/* PREMIUM SIDEBAR UPGRADE */
+.premium-sidebar{
+  width:292px;
+  left:-305px;
+  background:#111;
+  border-right:1px solid rgba(255,152,0,.22);
+}
+
+.sidebar-hero{
+  position:relative;
+  padding:18px 16px 20px;
+  min-height:112px;
+  display:flex;
+  align-items:flex-start;
+  justify-content:space-between;
+  overflow:hidden;
+  border-bottom:1px solid rgba(255,255,255,.08);
+  background:
+    radial-gradient(circle at 20% 0%, rgba(255,193,7,.24), transparent 34%),
+    linear-gradient(135deg,#151515,#1d1205 70%,#271504);
+}
+
+.sidebar-hero::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background-image:
+    linear-gradient(rgba(255,255,255,.055) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,.055) 1px, transparent 1px);
+  background-size:28px 28px;
+  opacity:.65;
+}
+
+.sidebar-brand{
+  position:relative;
+  z-index:1;
+  display:flex;
+  align-items:center;
+  gap:12px;
+}
+
+.sidebar-brand-img{
+  width:48px;
+  height:48px;
+  border-radius:14px;
+  object-fit:cover;
+  image-rendering:pixelated;
+  box-shadow:0 0 0 2px rgba(255,152,0,.42),0 0 22px rgba(255,152,0,.35);
+}
+
+.sidebar-brand h2{
+  font-size:21px;
+  line-height:1;
+  color:#fff;
+}
+
+.sidebar-brand h2 span{
+  color:#ff9800;
+  text-shadow:0 0 10px rgba(255,152,0,.8);
+}
+
+.sidebar-brand p{
+  margin-top:5px;
+  font-size:11px;
+  color:#d8d8d8;
+  letter-spacing:1.5px;
+}
+
+.premium-close{
+  position:relative;
+  z-index:2;
+  background:rgba(255,255,255,.09);
+  border:1px solid rgba(255,255,255,.1);
+}
+
+.premium-sidebar-body{
+  padding:16px 14px 24px;
+}
+
+.premium-section{
+  margin-bottom:20px;
+}
+
+.premium-section h3{
+  color:#ffb300;
+  letter-spacing:1px;
+  font-size:12px;
+}
+
+.language-dropdown{
+  position:relative;
+}
+
+.language-selected{
+  width:100%;
+  border:none;
+  outline:none;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:10px;
+  padding:14px 14px;
+  border-radius:16px;
+  background:#242424;
+  color:#fff;
+  font-size:14px;
+  font-weight:700;
+  cursor:pointer;
+  border:1px solid rgba(255,255,255,.08);
+}
+
+.language-arrow{
+  font-size:18px;
+  color:#ffb300;
+  transition:.2s ease;
+}
+
+.language-dropdown.open .language-arrow{
+  transform:rotate(180deg);
+}
+
+.language-options{
+  display:none;
+  margin-top:8px;
+  padding:8px;
+  border-radius:16px;
+  background:#1b1b1b;
+  border:1px solid rgba(255,255,255,.08);
+  box-shadow:0 10px 26px rgba(0,0,0,.35);
+}
+
+.language-dropdown.open .language-options{
+  display:block;
+}
+
+.language-options button{
+  width:100%;
+  border:none;
+  padding:12px;
+  border-radius:12px;
+  margin-bottom:6px;
+  background:#252525;
+  color:#fff;
+  text-align:left;
+  font-size:14px;
+  font-weight:700;
+  cursor:pointer;
+}
+
+.language-options button:last-child{
+  margin-bottom:0;
+}
+
+.language-options button:active,
+.official-link:active{
+  transform:scale(.98);
+}
+
+.official-link{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  padding:13px;
+  border-radius:16px;
+  background:#222;
+  border:1px solid rgba(255,255,255,.08);
+  transition:.2s ease;
+}
+
+.official-icon{
+  width:34px;
+  height:34px;
+  border-radius:12px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  color:#fff;
+  flex-shrink:0;
+}
+
+.official-icon svg{
+  width:20px;
+  height:20px;
+}
+
+.youtube-link .official-icon{
+  background:#ff0033;
+}
+
+.gmail-link .official-icon{
+  background:linear-gradient(135deg,#4285f4,#34a853,#fbbc05,#ea4335);
+}
+
+.whatsapp-link .official-icon{
+  background:#25d366;
+}
+
+.premium-info-card{
+  background:linear-gradient(180deg,#161616,#101010);
+  border:1px solid rgba(255,152,0,.22);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.05),0 10px 24px rgba(0,0,0,.22);
+}
+
+.premium-info-card p{
+  padding:5px 0;
+}
+
+.premium-info-card b{
+  color:#ffb300;
+}
+
+
+
+/* SEARCH INPUT CONTRAST UPGRADE */
+.search-box{
+  background:linear-gradient(135deg,rgba(255,152,0,.18),rgba(255,193,7,.08));
+  padding:10px;
+  border-radius:22px;
+  border:1px solid rgba(255,152,0,.22);
+  box-shadow:0 8px 22px rgba(0,0,0,.28);
+}
+
+.search-wrap input,
+.search-box select{
+  background:#0f0f0f !important;
+  border:1px solid rgba(255,152,0,.45) !important;
+  color:#fff !important;
+  box-shadow:inset 0 0 0 1px rgba(255,255,255,.03),0 0 16px rgba(255,152,0,.08);
+}
+
+.search-wrap input:focus,
+.search-box select:focus{
+  border-color:#ffb300 !important;
+  box-shadow:0 0 0 3px rgba(255,152,0,.18),0 0 22px rgba(255,152,0,.18);
+}
+
+.search-icon{
+  color:#ffb300 !important;
+}
+
+.search-wrap input::placeholder{
+  color:#9ca3af;
+}
+
+
+/* DETAIL PREVIEW SCREENSHOTS - OPTIONAL */
+#modalScreens{
+  display:none;
+  margin-top:14px;
+}
+
+#modalScreens h3{
+  font-size:15px;
+  margin:12px 0 8px;
+  color:#fff;
+}
+
+.screens-row{
+  display:flex;
+  gap:10px;
+  overflow-x:auto;
+  padding:2px 2px 8px;
+  scroll-snap-type:x mandatory;
+  -webkit-overflow-scrolling:touch;
+}
+
+.screens-row::-webkit-scrollbar{
+  height:6px;
+}
+
+.screens-row::-webkit-scrollbar-thumb{
+  background:#444;
+  border-radius:20px;
+}
+
+.screens-row img{
+  width:125px;
+  height:78px;
+  object-fit:cover;
+  border-radius:12px;
+  flex-shrink:0;
+  border:1px solid #333;
+  background:#222;
+  cursor:pointer;
+  scroll-snap-align:start;
+  transition:.18s ease;
+}
+
+.screens-row img:active{
+  transform:scale(.96);
+}
+
+.screens-row img.active-preview{
+  border-color:#ffb300;
+  box-shadow:0 0 0 2px rgba(255,179,0,.25);
+}
+
+
+</style>
+</head>
+
+<body class="splash-lock">
+
+<audio id="clickSound" preload="auto" crossorigin="anonymous">
+  <source src="https://files.catbox.moe/25dkw0.mp3" type="audio/mpeg">
+</audio>
+
+<div id="stecySplash" aria-label="StecyMaster loading screen">
+  <span class="splash-pixel p1"></span>
+  <span class="splash-pixel p2"></span>
+  <span class="splash-pixel p3"></span>
+  <span class="splash-pixel p4"></span>
+  <span class="splash-pixel p5"></span>
+
+  <div class="splash-card">
+    <div class="splash-avatar-wrap">
+<img class="splash-avatar" src="https://files.catbox.moe/ahjd3i.png">
+</div>
+
+    <div class="splash-title"><span>Stecy</span>Master</div>
+    <div class="splash-subtitle">MCPE FORUM</div>
+
+    <div id="splashLoadingText" class="splash-loading-text">LOADING ASSETS</div>
+    <div class="splash-progress">
+      <div class="splash-progress-fill"></div>
+    </div>
+    <div id="splashPercent" class="splash-percent">0%</div>
+    <div class="splash-version">v2.5.5 • STECYMC</div>
+  </div>
+</div>
+
+
+<div id="sidebarOverlay" class="sidebar-overlay" onclick="closeSidebar()"></div>
+
+<aside id="sidebar" class="sidebar premium-sidebar">
+  <div class="sidebar-hero">
+    <div class="sidebar-brand">
+      <img src="https://files.catbox.moe/gksui4.png" class="sidebar-brand-img" alt="StecyMaster">
+      <div>
+        <h2><span>Stecy</span>Master</h2>
+        <p>MCPE Forum</p>
+      </div>
+    </div>
+    <button class="sidebar-close premium-close" onclick="closeSidebar()">×</button>
+  </div>
+
+  <div class="sidebar-body premium-sidebar-body">
+    <div class="sidebar-section premium-section">
+      <h3 id="sideLangTitle">Bahasa</h3>
+
+      <div class="language-dropdown">
+        <button class="language-selected" onclick="toggleLanguageMenu()" type="button">
+          <span id="languageSelectedText">Select Language</span>
+          <span class="language-arrow">⌄</span>
+        </button>
+
+        <div id="languageOptions" class="language-options">
+          <button type="button" onclick="chooseLanguage('id')">🇮🇩 Indonesia</button>
+          <button type="button" onclick="chooseLanguage('en')">🇬🇧 English</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="sidebar-section premium-section">
+      <h3 id="sideOfficialTitle">Official</h3>
+
+      <a class="sidebar-link official-link youtube-link" href="https://youtube.com/@stecymc" target="_blank">
+        <span class="official-icon">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M23 7.1s-.2-1.7-.9-2.4c-.9-.9-1.9-.9-2.4-1C16.3 3.5 12 3.5 12 3.5s-4.3 0-7.7.2c-.5.1-1.5.1-2.4 1C1.2 5.4 1 7.1 1 7.1S.8 9.1.8 11.1v1.8c0 2 .2 4 .2 4s.2 1.7.9 2.4c.9.9 2.1.9 2.6 1 1.9.2 7.5.2 7.5.2s4.3 0 7.7-.3c.5 0 1.5-.1 2.4-1 .7-.7.9-2.4.9-2.4s.2-2 .2-4v-1.8c0-2-.2-4-.2-4zM9.9 15.2V8.5l6.3 3.4-6.3 3.3z"/></svg>
+        </span>
+        <span id="sideYoutubeText">Channel YouTube</span>
+      </a>
+
+      <a class="sidebar-link official-link gmail-link" href="mailto:business.stecymc@gmail.com">
+        <span class="official-icon">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4.2-8 5.1-8-5.1V6l8 5.1L20 6v2.2z"/></svg>
+        </span>
+        <span id="sideGmailText">Kontak Gmail</span>
+      </a>
+
+      <a class="sidebar-link official-link whatsapp-link" href="https://whatsapp.com/channel/0029VbBIniLGZNCsBjso3a35" target="_blank">
+        <span class="official-icon">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a9.9 9.9 0 0 0-8.5 15L2.4 22l5.1-1.3A10 10 0 1 0 12 2zm5.8 14.2c-.2.6-1.2 1.1-1.7 1.2-.5.1-1.1.2-3.5-.8-2.9-1.2-4.8-4.2-4.9-4.4-.1-.2-1.2-1.6-1.2-3s.8-2.1 1.1-2.4c.3-.3.6-.4.8-.4h.6c.2 0 .5 0 .7.5.2.5.8 1.9.9 2 .1.2.1.4 0 .6-.1.2-.2.4-.4.6-.2.2-.3.4-.5.5-.2.2-.4.4-.2.8.2.4.8 1.3 1.7 2.1 1.2 1 2.1 1.3 2.5 1.5.4.1.6.1.8-.1.2-.2.9-1 1.1-1.4.2-.4.5-.3.8-.2.3.1 2 .9 2.3 1.1.3.2.5.3.6.4.1.1.1.7-.1 1.3z"/></svg>
+        </span>
+        <span id="sideWhatsappText">WhatsApp Channel</span>
+      </a>
+    </div>
+
+    <div class="sidebar-section premium-section">
+      <h3 id="sideAppTitle">Info APK</h3>
+      <div class="sidebar-info premium-info-card">
+        <p><b id="infoAppLabel">Aplikasi:</b> StecyMaster MCPE Forum</p>
+        <p><b id="infoVersionLabel">Versi:</b> 2.5.5</p>
+        <p><b id="infoVersionCodeLabel">VersionCode:</b> 2sty5m5</p>
+        <p><b id="infoDevLabel">Developer:</b> STECYMC</p>
+      </div>
+    </div>
+  </div>
+</aside>
+
+<header>
+  <div class="header-row">
+    <button class="menu-toggle" onclick="openSidebar()" aria-label="Open menu">
+      <div></div>
+      <div></div>
+      <div></div>
+    </button>
+
+    <div class="logo">
+      <img src="https://files.catbox.moe/l9gby3.png" class="logo-head">
+      <span class="logo-orange">Stecy</span><span>Master</span><small>forum</small>
+    </div>
+  </div>
+
+  <div class="search-box">
+    <div class="search-wrap">
+      <svg class="search-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="2"></circle>
+        <path d="M16.5 16.5L21 21" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path>
+      </svg>
+      <input type="text" id="search" placeholder="Cari mod, texture, map...">
+    </div>
+    <select id="version">
+      <option id="versionAll" value="all">Semua</option>
+      <option value="0.14.3 - 0.15.10">0.14.3 - 0.15.10</option>
+      <option value="0.14.3">0.14.3</option>
+      <option value="0.15.10">0.15.10</option>
+    </select>
+  </div>
+</header>
+
+<section class="banner-slider" aria-label="Featured content">
+
+  <div class="slides" id="slides">
+
+    <div class="slide active">
+      <img src="https://files.catbox.moe/24xyrq.png" alt="Best MCPE Mods">
+      <div class="slide-overlay">
+        <h2 id="bannerTitle1">Best MCPE Mods</h2>
+        <p id="bannerDesc1">Koleksi mod keren untuk MCPE 0.14.3 - 0.15.10</p>
+      </div>
+    </div>
+
+    <div class="slide">
+      <img src="https://files.catbox.moe/55qph7.png" alt="HD Texture Pack">
+      <div class="slide-overlay">
+        <h2 id="bannerTitle2">ALL LAUNCHER</h2>
+        <p id="bannerDesc2">LAUNCHER keren dan ringan untuk Minecraft PE</p>
+      </div>
+    </div>
+
+    <div class="slide">
+      <img src="https://files.catbox.moe/nat3wn.png" alt="Launcher and Tools">
+      <div class="slide-overlay">
+        <h2 id="bannerTitle3">Launcher & Tools</h2>
+        <p id="bannerDesc3">INFO</p>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="dots" id="bannerDots" aria-label="Banner dots">
+    <button class="dot active" onclick="showSlide(0)" aria-label="Banner 1"></button>
+    <button class="dot" onclick="showSlide(1)" aria-label="Banner 2"></button>
+    <button class="dot" onclick="showSlide(2)" aria-label="Banner 3"></button>
+  </div>
+
+</section>
+
+<div class="category-scroll">
+  <div class="category-card active" onclick="setCategory('all',this)" role="button">
+    <div class="cat-icon">
+      <svg viewBox="0 0 24 24" fill="none">
+        <rect x="4" y="4" width="6" height="6" rx="1.5" stroke="currentColor" stroke-width="2"/>
+        <rect x="14" y="4" width="6" height="6" rx="1.5" stroke="currentColor" stroke-width="2"/>
+        <rect x="4" y="14" width="6" height="6" rx="1.5" stroke="currentColor" stroke-width="2"/>
+        <rect x="14" y="14" width="6" height="6" rx="1.5" stroke="currentColor" stroke-width="2"/>
+      </svg>
+    </div>
+    <span id="tabAll">Semua</span>
+  </div>
+
+  <div class="category-card" onclick="setCategory('mod',this)" role="button">
+    <div class="cat-icon">
+      <svg viewBox="0 0 24 24" fill="none">
+        <path d="M13 2L4 14h7l-1 8 10-13h-7V2z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+      </svg>
+    </div>
+    <span id="tabMod">Mod</span>
+  </div>
+
+  <div class="category-card" onclick="setCategory('texture',this)" role="button">
+    <div class="cat-icon">
+      <svg viewBox="0 0 24 24" fill="none">
+        <path d="M4 17.5V6.5A2.5 2.5 0 0 1 6.5 4h11A2.5 2.5 0 0 1 20 6.5v11a2.5 2.5 0 0 1-2.5 2.5h-11A2.5 2.5 0 0 1 4 17.5z" stroke="currentColor" stroke-width="2"/>
+        <path d="M4 16l5-5 4 4 2-2 5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        <circle cx="15.5" cy="8.5" r="1.5" fill="currentColor"/>
+      </svg>
+    </div>
+    <span id="tabTexture">Texture</span>
+  </div>
+
+  <div class="category-card" onclick="setCategory('map',this)" role="button">
+    <div class="cat-icon">
+      <svg viewBox="0 0 24 24" fill="none">
+        <path d="M9 18l-5 2V6l5-2 6 2 5-2v14l-5 2-6-2z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+        <path d="M9 4v14M15 6v14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+      </svg>
+    </div>
+    <span id="tabMap">Map</span>
+  </div>
+
+  <div class="category-card" onclick="setCategory('launcher',this)" role="button">
+    <div class="cat-icon">
+      <svg viewBox="0 0 24 24" fill="none">
+        <path d="M12 3c3 2 5 5 5 9 0 3-2 6-5 9-3-3-5-6-5-9 0-4 2-7 5-9z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+        <circle cx="12" cy="11" r="2" stroke="currentColor" stroke-width="2"/>
+        <path d="M8 19l-3 2 1-4M16 19l3 2-1-4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </div>
+    <span id="tabLauncher">Launcher</span>
+  </div>
+</div>
+
+<div class="container" id="list"></div>
+
+
+<div class="modal" id="detailModal" onclick="closeDetailOutside(event)">
+  <div class="modal-box">
+    <img id="modalImg" src="" alt="">
+    <div class="modal-content">
+      <h2 id="modalTitle"></h2>
+      <span class="modal-tag" id="modalTag"></span>
+
+      <h3 id="modalFunctionTitle">Fungsi</h3>
+      <p id="modalDesc"></p>
+
+      <h3 id="modalInstallTitle">Cara Pasang</h3>
+      <ol id="modalInstall"></ol>
+
+      <div id="modalScreens"></div>
+
+      <div class="modal-actions">
+        <button id="modalDownload" class="download">Download</button>
+        <button id="modalCloseBtn" class="closeBtn" onclick="closeDetail()">Tutup</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<div class="modal" id="downloadModal">
+  <div class="download-manager-box">
+    <div class="download-manager-head">
+      <h2 id="dmTitle">Download Manager</h2>
+      <p id="dmSubtitle">StecyMaster File Downloader</p>
+    </div>
+
+    <div class="download-manager-body">
+      <div id="dmFile" class="dm-file">File name</div>
+      <div id="dmStatus" class="dm-status">Connecting...</div>
+
+      <div class="dm-progress-wrap">
+        <div id="dmBar" class="dm-progress-bar"></div>
+      </div>
+
+      <div id="dmPercent" class="dm-percent">0%</div>
+
+      <div class="dm-info-grid">
+        <div class="dm-info-card">
+          <span>Downloaded</span>
+          <b id="dmSize">0 MB / Unknown</b>
+        </div>
+        <div class="dm-info-card">
+          <span>Speed</span>
+          <b id="dmSpeed">0 KB/s</b>
+        </div>
+      </div>
+
+      <div class="dm-actions">
+        <button class="dm-cancel" onclick="cancelDownloadManager()" id="dmCancelBtn">Cancel</button>
+        <button class="dm-close" onclick="closeDownloadManager()" id="dmCloseBtn">Close</button>
+      </div>
+
+      <div class="dm-note" id="dmNote">
+        Progress real hanya muncul kalau server memberi ukuran file. Jika tidak, status tetap berjalan sampai file siap disimpan.
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer id="footerText">
+  © 2026 StecyMaster | MCPE 0.14.3 - 0.15.10
+</footer>
+
+<script>
+/* =========================
+   DATA URL STECYMASTER
+   GANTI / TAMBAH DI SINI
+========================= */
+
+const data = [
+
+{
+title:"Dynamic Lights PE",
+category:"mod",
+version:"0.14.3 - 0.15.10",
+desc_id:"Mod ini membuat obor menyala saat dipegang, jadi area sekitar langsung terang tanpa perlu ditaruh.",
+desc_en:"This mod makes torches light up while held, so nearby areas become bright without placing them.",
+image:"https://files.catbox.moe/09jgnr.webp",
+file:"https://files.catbox.moe/1a6t9e.js",
+video:"#"
+},
+
+{
+title:"Debugpe",
+category:"mod",
+version:"0.14.3 - 0.15.10",
+desc_id:"Mod ini menghadirkan tampilan debug seperti koordinat, FPS, dan info penting lainnya.",
+desc_en:"This mod adds a debug display such as coordinates, FPS, and other useful information.",
+image:"https://files.catbox.moe/y2qo08.png",
+file:"https://files.catbox.moe/443o7s.zip",
+video:"#"
+},
+
+{
+title:"ZombieMutans mod",
+category:"mod",
+version:"0.14.3 - 0.15.10",
+desc_id:"Mod ini menambahkan zombie mutan dengan ukuran besar dan kekuatan tinggi.",
+desc_en:"This mod adds large mutant zombies with stronger power.",
+image:"https://files.catbox.moe/hnxwuc.png",
+file:"https://files.catbox.moe/zl3fru.zip",
+video:"#"
+},
+
+{
+title:"Magicraft",
+category:"mod",
+version:"0.14.3 - 0.15.10",
+desc_id:"Mod ini menambahkan elemen sihir ke dalam Minecraft PE.",
+desc_en:"This mod adds magic elements into Minecraft PE.",
+image:"https://files.catbox.moe/ljjlo5.webp",
+file:"https://files.catbox.moe/5odmdi.zip",
+video:"#"
+},
+
+{
+title:"World Edit by @bananamcpe",
+category:"mod",
+version:"0.14.3 - 0.15.10",
+desc_id:"Mod ini memudahkan pemain mengedit dunia dengan cepat.",
+desc_en:"This mod helps players edit worlds quickly.",
+image:"https://files.catbox.moe/qobi5u.png",
+file:"https://files.catbox.moe/35egij.js",
+video:"#"
+},
+
+{
+title:"Keep Inventory",
+category:"mod",
+version:"0.14.3 - 0.15.10",
+desc_id:"Mod ini membuat item tetap tersimpan saat pemain mati.",
+desc_en:"This mod keeps your items saved when the player dies.",
+image:"https://files.catbox.moe/8ifjq2.webp",
+file:"https://files.catbox.moe/qyabis.js",
+video:"#"
+},
+
+{
+title:"Optifine Plus Mod",
+category:"mod",
+version:"0.14.3 - 0.15.10",
+desc_id:"Mod ini membantu meningkatkan performa dan mengurangi lag.",
+desc_en:"This mod helps improve performance and reduce lag.",
+image:"https://files.catbox.moe/em3b64.webp",
+file:"https://files.catbox.moe/cxekig.js",
+video:"#"
+},
+
+{
+title:"Instant House / Structure",
+category:"mod",
+version:"0.14.3 - 0.15.10",
+desc_id:"Mod ini memungkinkan pemain membuat struktur secara instan.",
+desc_en:"This mod allows players to create structures instantly.",
+image:"https://files.catbox.moe/6gyay7.jpeg",
+file:"https://files.catbox.moe/7bkhw9.js",
+video:"#"
+},
+
+{
+title:"Vehicle Mods",
+category:"mod",
+version:"0.14.3 - 0.15.10",
+desc_id:"Mod ini menambahkan berbagai kendaraan yang bisa dikendarai.",
+desc_en:"This mod adds various vehicles that can be driven.",
+image:"https://files.catbox.moe/q36mek.png",
+file:"https://files.catbox.moe/2kgqxp.zip",
+video:"#"
+},
+
+{
+title:"Guns Mods",
+category:"mod",
+version:"0.14.3 - 0.15.10",
+desc_id:"Mod senjata keren untuk Minecraft PE.",
+desc_en:"A cool weapon mod for Minecraft PE.",
+image:"https://files.catbox.moe/lg31pz.png",
+file:"https://files.catbox.moe/6iwsi0.zip",
+video:"#"
+},
+
+{
+title:"SpongeBob Mod And Morph Mod",
+category:"mod",
+version:"0.14.3 - 0.15.10",
+desc_id:"Mod karakter SpongeBob dan morph.",
+desc_en:"A SpongeBob character and morph mod.",
+image:"https://files.catbox.moe/zltok8.png",
+file:"https://files.catbox.moe/bfuis7.zip",
+video:"#"
+},
+
+{
+title:"Mini Maps Mod mcpe",
+category:"mod",
+version:"0.14.3 - 0.15.10",
+desc_id:"Mini map untuk MCPE.",
+desc_en:"A mini map mod for MCPE.",
+image:"https://files.catbox.moe/6jx61h.webp",
+file:"https://files.catbox.moe/wjybn9.js",
+video:"#"
+},
+
+{
+title:"Achievements mods",
+category:"mod",
+version:"0.14.3 - 0.15.10",
+desc_id:"Tambah achievement ke game.",
+desc_en:"Adds achievements into the game.",
+image:"https://files.catbox.moe/zq1snn.webp",
+file:"https://files.catbox.moe/ygwr42.zip",
+video:"#"
+},
+
+{
+title:"ARCADE_MOD_V2",
+category:"mod",
+version:"0.14.3 0.15.10",
+desc_id:"Mod arcade seru.",
+desc_en:"A fun arcade-style mod.",
+image:"https://files.catbox.moe/lal6l6.png",
+file:"https://files.catbox.moe/d91cyj.zip",
+video:"#"
+},
+
+{
+title:"Command Mod",
+category:"mod",
+version:"0.14.3 - 0.15.10",
+desc_id:"Mod command tambahan untuk Minecraft PE.",
+desc_en:"Adds extra commands for Minecraft PE.",
+image:"https://files.catbox.moe/ltvi81.png",
+file:"https://files.catbox.moe/mniazk.js",
+video:"#"
+},
+
+{
+title:"Dragon Mods",
+category:"mod",
+version:"0.14.3 - 0.15.10",
+desc_id:"Mod naga untuk Minecraft PE.",
+desc_en:"A dragon mod for Minecraft PE.",
+image:"https://files.catbox.moe/9n83gk.png",
+file:"https://files.catbox.moe/ug44lb.zip",
+video:"#"
+},
+
+{
+title:"Elemental Sword v5",
+category:"mod",
+version:"0.14.3 - 0.15.10",
+desc_id:"Pedang elemen keren.",
+desc_en:"A cool elemental sword mod.",
+image:"https://files.catbox.moe/reig50.png",
+file:"https://files.catbox.moe/4rnify.zip",
+video:"#"
+},
+
+{
+title:"Shift-Y-Ctrl-Mod-MCPE",
+category:"mod",
+version:"0.14.3 - 0.15.10",
+desc_id:"Tambahkan tombol Shift dan Ctrl ke MCPE.",
+desc_en:"Adds Shift and Ctrl buttons to MCPE.",
+image:"https://files.catbox.moe/qnsfbl.jpeg",
+file:"https://files.catbox.moe/tuelqw.js",
+video:"#"
+},
+
+{
+title:"Tree Capitator",
+category:"mod",
+version:"0.14.3 - 0.15.10",
+desc_id:"Tebang satu batang, seluruh pohon langsung tumbang.",
+desc_en:"Chop one log, the whole tree falls",
+image:"https://files.catbox.moe/agiv9g.jpeg",
+file:"https://files.catbox.moe/s72t40.js",
+video:"#"
+},
+
+{
+title:"vein miner",
+category:"mod",
+version:"0.14.3 - 0.15.10",
+desc_id:"Hancurkan satu bijih, semua bijih terhubung ikut hancur.",
+desc_en:"Break one ore, connected ores break too",
+image:"https://files.catbox.moe/fosj4x.jpeg",
+file:"https://files.catbox.moe/c8dkic.js",
+video:"#"
+},
+
+{
+title:"Achievement mod v2",
+category:"mod",
+version:"0.14.3 - 0.15.10",
+desc_id:"Tambahkan sistem pencapaian baru ke dalam game.",
+desc_en:"Adds new achievements to the game.",
+image:"https://files.catbox.moe/k218yh.jpeg",
+file:"https://files.catbox.moe/mb3w2r.zip",
+video:"#"
+},
+
+{
+title:"Ender Pearl",
+category:"mod",
+version:"0.14.3 - 0.15.10",
+desc_id:"Teleport cepat menggunakan ender pearl.",
+desc_en:"Fast teleport using ender pearl.",
+image:"https://files.catbox.moe/ja3ei3.png",
+file:"https://files.catbox.moe/gp2lut.js",
+video:"#"
+},
+
+{
+title:"New Structure Village",
+category:"mod",
+version:"0.14.3 - 0.15.10",
+desc_id:"Menambahkan struktur village baru.",
+desc_en:"Adds new village structures.",
+image:"https://files.catbox.moe/nhsszn.png",
+file:"https://files.catbox.moe/ibrb1h.7z",
+video:"#"
+},
+
+{
+title:"PocketDecoration v6.0",
+category:"mod",
+version:"0.15.10",
+desc_id:"Dekorasi rumah untuk Minecraft PE.",
+desc_en:"Adds home decoration items for Minecraft PE.",
+image:"https://files.catbox.moe/gbnxuo.png",
+file:"https://files.catbox.moe/r5sbg8.zip",
+video:"#"
+},
+
+{
+title:"MODPACK Hero",
+category:"mod",
+version:"0.15.10",
+desc_id:"Modpack lengkap.",
+desc_en:"A complete modpack.",
+image:"https://files.catbox.moe/gb2mmy.png",
+file:"https://files.catbox.moe/i813ui.zip",
+video:"#"
+},
+
+{
+title:"BareBones Texture",
+category:"texture",
+version:"0.15.10",
+desc_id:"Texture ringan dan simpel.",
+desc_en:"A lightweight and simple texture pack.",
+image:"https://files.catbox.moe/2w0ta0.png",
+file:"https://files.catbox.moe/94n3na.zip",
+video:"#"
+},
+
+{
+title:"Prime HD x32",
+category:"texture",
+version:"0.15.10",
+desc_id:"Texture HD x32.",
+desc_en:"An HD x32 texture pack.",
+image:"https://files.catbox.moe/vmexuj.png",
+file:"https://files.catbox.moe/27v9qc.zip",
+video:"#"
+},
+
+{
+title:"Sycthe Texture",
+category:"texture",
+version:"0.15.10",
+desc_id:"Texture keren.",
+desc_en:"A cool texture pack.",
+image:"https://files.catbox.moe/j7rvv6.png",
+file:"https://files.catbox.moe/txpkjf.zip",
+video:"#"
+},
+
+{
+title:"Action and Stuff",
+category:"texture",
+version:"0.15.10",
+desc_id:"Texture animasi.",
+desc_en:"An animated texture pack.",
+image:"https://files.catbox.moe/zo4vry.png",
+file:"https://files.catbox.moe/glxvfi.zip",
+video:"#"
+},
+
+{
+title:"Invisible Armor",
+category:"texture",
+version:"0.15.10",
+desc_id:"Armor transparan.",
+desc_en:"Makes armor invisible.",
+image:"https://files.catbox.moe/ojrl1n.png",
+file:"https://files.catbox.moe/k5bmo4.zip",
+video:"#"
+},
+
+{
+title:"Terraria-Texture",
+category:"texture",
+version:"0.15.10",
+desc_id:"terrain.",
+desc_en:"terrain texture .",
+image:"https://files.catbox.moe/ti6359.jpg",
+file:"https://files.catbox.moe/j81bqj.jpg",
+video:"#"
+},
+
+{
+title:"BETP Texture",
+category:"texture",
+version:"0.15.10",
+desc_id:"Texture realistis.",
+desc_en:"A realistic texture pack.",
+image:"https://files.catbox.moe/l8kkwd.png",
+file:"https://files.catbox.moe/1gvtot.zip",
+video:"#"
+},
+
+{
+title:"Map Kampung Durian Runtuh v1",
+category:"map",
+version:"0.15.10",
+desc_id:"Map kampung bernuansa Indonesia.",
+desc_en:"A village map with Indonesian vibes.",
+image:"https://files.catbox.moe/rse268.jpg",
+file:"https://files.catbox.moe/kq18nz.zip",
+video:"#"
+},
+
+{
+title:"Escape Map",
+category:"map",
+version:"0.15.10",
+desc_id:"Map escape untuk tantangan.",
+desc_en:"An escape map for challenges.",
+image:"https://files.catbox.moe/gqmre0.jpg",
+file:"https://files.catbox.moe/4grvkn.zip",
+video:"#"
+},
+
+{
+title:"Map Spiral Parkour",
+category:"map",
+version:"0.15.10",
+desc_id:"Map parkour spiral.",
+desc_en:"A spiral parkour map.",
+image:"https://files.catbox.moe/nxdd2r.jpg",
+file:"https://files.catbox.moe/yddsbf.zip",
+video:"#"
+},
+
+{
+title:"Map Nuansa Indo",
+category:"map",
+version:"0.15.10",
+desc_id:"Map dengan nuansa Indonesia.",
+desc_en:"A map with Indonesian vibes.",
+image:"https://files.catbox.moe/w591k2.jpg",
+file:"https://files.catbox.moe/o3zazx.zip",
+video:"#"
+},
+
+{
+title:"village world",
+category:"map",
+version:"0.15.10",
+desc_id:"Map dunia pedesaan dengan suasana village yang sederhana dan nyaman. Cocok untuk survival santai, eksplorasi, dan roleplay.",
+desc_en:"A countryside world map with a simple and cozy village atmosphere. Great for relaxed survival, exploration, and roleplay.",
+image:"https://files.catbox.moe/k8k7x9.jpg",
+file:"https://files.catbox.moe/jg720f.7z",
+video:"#"
+},
+
+{
+title:"freeddy",
+category:"map",
+version:"0.15.10",
+desc_id:"Map horor bertema Freddy dengan suasana gelap dan menegangkan. Cocok untuk eksplorasi, roleplay, atau dimainkan bareng teman.",
+desc_en:"A Freddy-themed horror map with a dark and tense atmosphere. Great for exploration, roleplay, or playing with friends.",
+image:"https://files.catbox.moe/n70sr5.webp",
+file:"https://files.catbox.moe/09yg1o.zip",
+video:"#"
+},
+
+{
+title:"esconde esconde natal",
+category:"map",
+version:"0.15.10",
+desc_id:"Map hide and seek bertema Natal dengan arena unik dan suasana liburan. Cocok untuk bermain petak umpet bersama teman di MCPE.",
+desc_en:"A Christmas-themed hide and seek map with a unique arena and holiday atmosphere. Great for playing hide and seek with friends in MCPE.",
+image:"https://files.catbox.moe/wiczgu.jpeg",
+file:"https://files.catbox.moe/nambcg.zip",
+video:"#"
+},
+
+{
+title:"esconde esconde map",
+category:"map",
+version:"0.15.10",
+desc_id:"Map petak umpet dengan tempat persembunyian yang seru dan area bermain yang cocok untuk multiplayer.",
+desc_en:"A hide and seek map with fun hiding spots and a play area that is suitable for multiplayer.",
+image:"https://files.catbox.moe/m6cc51.jpeg",
+file:"https://files.catbox.moe/99qohs.zip",
+video:"#"
+},
+
+{
+title:"esconde esconde  2",
+category:"map",
+version:"0.15.10",
+desc_id:"Map petak umpet versi kedua dengan area baru, spot sembunyi lebih banyak, dan gameplay yang lebih seru untuk mabar.",
+desc_en:"The second hide and seek map with a new area, more hiding spots, and more fun gameplay for multiplayer.",
+image:"https://files.catbox.moe/olvy9g.jpeg",
+file:"https://files.catbox.moe/b8bq6p.zip",
+video:"#"
+},
+
+{
+title:"roller coaster",
+category:"map",
+version:"0.15.10",
+desc_id:"Map roller coaster dengan jalur rel yang seru untuk dinaiki. Cocok buat hiburan, showcase, dan eksplorasi santai di MCPE.",
+desc_en:"A roller coaster map with a fun rail track to ride. Great for entertainment, showcase, and relaxed exploration in MCPE.",
+image:"https://files.catbox.moe/rpmjsb.jpeg",
+file:"https://files.catbox.moe/rxofwo.zip",
+video:"#"
+},
+
+{
+title:"MiniGames Map 0.14.3 FROM TOMZZ",
+category:"map",
+version:"0.14.3 - 0.15.10",
+desc_id:"Selamat datang di Map Minigame! Uji skill parkour, PvP, dan puzzle bareng teman. Round cepat, tantangan seru, dan bisa dimainin berkali-kali. Selamat bermain!",
+desc_en:"Welcome to the Minigame Map! Test your parkour, PvP, and puzzle skills with friends. Fast rounds, fun challenges, and endless replay value. Good luck and have fun!",
+image:"https://files.catbox.moe/1ipr89.jpg",
+
+screens:[
+  "https://files.catbox.moe/lgavpk.jpg",
+  "https://files.catbox.moe/ffmad6.jpg",
+  "https://files.catbox.moe/1ipr89.jpg"
+],
+
+file:"https://files.catbox.moe/xjs2fd.zip",
+video:"#"
+},
+
+{
+title:"zero one 01",
+category:"map",
+version:"0.14.3 - 0.15.10",
+desc_id:"Mainkan berbagai mini game seru dalam satu map! Tantang temanmu dan selesaikan setiap permainan untuk menjadi juara. ",
+desc_en:"Play various fun mini games in one map! Challenge your friends and complete every game to become the champion.",
+image:"https://files.catbox.moe/80iwnv.jpg",
+
+screens:[
+  "https://files.catbox.moe/6a1r1y.jpg",
+  "https://files.catbox.moe/29f5i2.jpg",
+],
+
+file:"https://files.catbox.moe/4grvkn.zip",
+video:"#"
+},
+
+{
+title:"Quarto do mike",
+category:"map",
+version:"0.15.10",
+desc_id:"Map kamar Mike dengan detail ruangan yang cocok untuk roleplay, eksplorasi, dan konten showcase di Minecraft PE.",
+desc_en:"Mike's room map with detailed room design, suitable for roleplay, exploration, and showcase content in Minecraft PE.",
+image:"https://files.catbox.moe/63cnnh.jpeg",
+file:"https://files.catbox.moe/c743nw.zip",
+video:"#"
+},
+
+{
+title:"Map bakso malang",
+category:"map",
+version:"0.15.10",
+desc_id:"Map bertema Bakso Malang dengan suasana khas Indonesia. Cocok untuk roleplay jualan, eksplorasi, dan konten MCPE bernuansa lokal.",
+desc_en:"A Bakso Malang themed map with Indonesian local vibes. Great for food stall roleplay, exploration, and local-style MCPE content.",
+image:"https://files.catbox.moe/dowf2j.jpg",
+file:"https://files.catbox.moe/2ktqfo.zip",
+video:"#"
+},
+
+{
+title:"Map skywars",
+category:"map",
+version:"0.15.10",
+desc_id:"Map SkyWars untuk pertarungan di pulau-pulau kecil. Kumpulkan item, bertahan hidup, dan kalahkan pemain lain sampai menjadi pemenang.",
+desc_en:"A SkyWars map for battles on small islands. Collect items, survive, and defeat other players until you become the winner.",
+image:"https://files.catbox.moe/phwfuu.jpeg",
+file:"https://files.catbox.moe/qdsfls.zip",
+video:"#"
+},
+
+{
+title:"Battle ship",
+category:"map",
+version:"0.15.10",
+desc_id:"Map kapal perang besar dengan berbagai ruangan, dek, dan area eksplorasi yang menarik. Cocok untuk bermain roleplay, petualangan, atau bertempur bersama teman di dunia Minecraft.",
+desc_en:"A large battleship map featuring multiple rooms, decks, and exploration areas. Perfect for roleplay, adventure, or battling with friends in Minecraft.",
+image:"https://files.catbox.moe/tewe2r.jpeg",
+file:"https://files.catbox.moe/11dyn8.zip",
+video:"#"
+},
+
+{
+title:"Drought+-+Geoman",
+category:"map",
+version:"0.15.10",
+desc_id:"Jelajahi dunia unik dengan suasana misterius dan lingkungan yang penuh tantangan. Map ini menawarkan pengalaman eksplorasi yang seru dengan berbagai lokasi menarik untuk ditemukan.",
+desc_en:"Explore a unique world filled with mystery and challenging environments. This map offers an exciting adventure with many interesting locations to discover.",
+image:"https://files.catbox.moe/65k2st.jpeg",
+file:"https://files.catbox.moe/1z4q6u.zip",
+video:"#"
+},
+
+{
+title:"Far Stone Kingdom",
+category:"map",
+version:"0.15.10",
+desc_id:"Kerajaan batu megah dengan kastil besar, bangunan unik, dan pemandangan yang indah. Sangat cocok untuk eksplorasi, survival, maupun dijadikan dunia roleplay.",
+desc_en:"A magnificent stone kingdom featuring a huge castle, unique buildings, and beautiful scenery. Great for exploration, survival gameplay, or roleplay adventures.",
+image:"https://files.catbox.moe/2kpslu.jpeg",
+file:"https://files.catbox.moe/2lp8xd.zip",
+video:"#"
+},
+
+{
+title:"MineCastle",
+category:"map",
+version:"0.15.10",
+desc_id:"Nikmati petualangan di kastil besar yang dipenuhi detail menarik. Map ini menghadirkan suasana kerajaan yang cocok untuk dijelajahi sendirian maupun bersama teman.",
+desc_en:"Enjoy an adventure inside a massive castle packed with impressive details. This map brings a royal atmosphere perfect for solo or multiplayer exploration.",
+image:"https://files.catbox.moe/2dsv8t.jpeg",
+file:"https://files.catbox.moe/qkfif8.zip",
+video:"#"
+},
+
+{
+title:"Path Of The Ninja",
+category:"map",
+version:"0.15.10",
+desc_id:"Uji kemampuan parkour dan ketangkasanmu melalui berbagai rintangan bergaya ninja. Setiap jalur menghadirkan tantangan yang semakin sulit dan seru untuk diselesaikan.",
+desc_en:"Test your parkour skills and agility through various ninja-themed challenges. Each stage becomes more difficult and exciting as you progress.",
+image:"https://files.catbox.moe/q1jws2.jpeg",
+file:"https://files.catbox.moe/z3678v.zip",
+video:"#"
+},
+
+{
+title:"Quantum 4 Chapters v2",
+category:"map",
+version:"0.15.10",
+desc_id:"Map petualangan dengan alur cerita yang terbagi dalam beberapa chapter. Pecahkan misteri, jelajahi area baru, dan ikuti perjalanan seru hingga akhir cerita.",
+desc_en:"An adventure map featuring a story divided into multiple chapters. Solve mysteries, explore new areas, and experience an exciting journey from start to finish.",
+image:"https://files.catbox.moe/io5cwk.jpeg",
+file:"https://files.catbox.moe/4k5n0i.zip",
+video:"#"
+},
+
+{
+title:"Block angeles",
+category:"map",
+version:"0.15.10",
+desc_id:"Map kota Block Angeles dengan bangunan perkotaan yang luas. Cocok untuk eksplorasi, roleplay kota, dan membuat konten Minecraft PE.",
+desc_en:"A Block Angeles city map with a large urban area. Great for exploration, city roleplay, and Minecraft PE content creation.",
+image:"https://files.catbox.moe/190ug4.png",
+file:"https://files.catbox.moe/cjj44i.zip",
+video:"#"
+},
+
+{
+title:"PARADISE CHAPTER 2",
+category:"map",
+version:"0.15.10",
+desc_id:"Map paradise chapter 2.",
+desc_en:"Paradise map chapter 2.",
+image:"https://files.catbox.moe/1udx57.jpg",
+file:"https://files.catbox.moe/7g5gz9.zip",
+video:"#"
+},
+
+{
+title:"TOOLBOX FOR 0.15.10",
+category:"launcher",
+version:"0.15.10",
+desc_id:"TOOLBOX Berfungsi Untuk Menjalankan Mod/TexturePack ",
+desc_en:"Toolbox is used to run mods and texture packs.",
+image:"https://files.catbox.moe/vcfcqe.png",
+file:"https://files.catbox.moe/mcvrjv.apk",
+video:"#"
+},
+
+{
+title:"TOOLBOX FOR 0.14.3",
+category:"launcher",
+version:"0.14.3",
+desc_id:"TOOLBOX Berfungsi Untuk Menjalankan Mod/TexturePack ",
+desc_en:"Toolbox is used to run mods and texture packs.",
+image:"https://files.catbox.moe/935rp7.png",
+file:"https://files.catbox.moe/2jidn5.apk",
+video:"#"
+},
+
+{
+title:"BLOCK LAUNCHER FOR 0.15.10",
+category:"launcher",
+version:"0.15.10",
+desc_id:"Block Launcher 0.15.10 Berfungsi Untuk Menjalankan Mod/TexturePack ",
+desc_en:"Block Launcher 0.15.10 is used to run mods and texture packs.",
+image:"https://files.catbox.moe/kmvf7t.png",
+file:"https://files.catbox.moe/kwaaip.apk",
+video:"#"
+},
+
+{
+title:"BLOCK LAUNCHER Pro FOR 0.14.3 ",
+category:"launcher",
+version:"0.14.3",
+desc_id:"Block Launcher 0.14.3 Berfungsi Untuk Menjalankan Mod/TexturePack ",
+desc_en:"Block Launcher 0.14.3 is used to run mods and texture packs.",
+image:"https://files.catbox.moe/wm7sq9.png",
+file:"https://files.catbox.moe/xolnr5.apk",
+video:"#"
+},
+
+];
+  
+let currentCategory = "all";
+let currentLanguage = "id";
+
+const UI_TEXT = {
+  id:{
+    search:"Cari mod, texture, map, launcher...",
+    heroTitle:"Collection of Mods, Textures, Maps, Launcher, And Tools For MCPE 0.14.3 - 0.15.10",
+    heroSub:"FORUM STECY MASTER © 2026 @STECYMC",
+    langTitle:"Bahasa",
+    officialTitle:"Official",
+    appTitle:"Info APK",
+    youtube:"YouTube",
+    gmail:"Kontak Gmail",
+    whatsapp:"WhatsApp",
+    selectLanguage:"Select Language",
+    infoApp:"Aplikasi:",
+    infoVersion:"Versi:",
+    infoUpdate:"Update:",
+    infoDev:"Developer:",
+    tabAll:"Semua",
+    tabMod:"Mod",
+    tabTexture:"Texture",
+    tabMap:"Map",
+    tabLauncher:"Launcher",
+    functionTitle:"Fungsi",
+    installTitle:"Cara Pasang",
+    close:"Tutup",
+    download:"Download",
+    detail:"Detail",
+    empty:"Tidak ada data ditemukan.",
+    footer:"© 2026 StecyMaster | MCPE 0.14.3 - 0.15.10",
+    versionAll:"Semua",
+    bannerTitle1:"Best MCPE Mods",
+    bannerDesc1:"Koleksi mod keren untuk MCPE 0.14.3 - 0.15.10",
+    bannerTitle2:"HD Texture Pack",
+    bannerDesc2:"Texture keren dan ringan untuk Minecraft PE",
+    bannerTitle3:"Launcher & Tools",
+    bannerDesc3:"Toolbox dan BlockLauncher untuk MCPE"
+  },
+  en:{
+    search:"Search mods, textures, maps, launchers...",
+    heroTitle:"Collection of Mods, Textures, Maps, Launchers, And Tools For MCPE 0.14.3 - 0.15.10",
+    heroSub:"STECY MASTER FORUM © 2026 @STECYMC",
+    langTitle:"Language",
+    officialTitle:"Official",
+    appTitle:"App Info",
+    youtube:"YouTube Channel",
+    gmail:"Gmail Contact",
+    whatsapp:"WhatsApp Channel",
+    selectLanguage:"Select Language",
+    infoApp:"App:",
+    infoVersion:"Version:",
+    infoUpdate:"Update:",
+    infoDev:"Developer:",
+    tabAll:"All",
+    tabMod:"Mods",
+    tabTexture:"Textures",
+    tabMap:"Maps",
+    tabLauncher:"Launchers",
+    functionTitle:"Function",
+    installTitle:"How To Install",
+    close:"Close",
+    download:"Download",
+    detail:"Details",
+    empty:"No data found.",
+    footer:"© 2026 StecyMaster | MCPE 0.14.3 - 0.15.10",
+    versionAll:"All",
+    bannerTitle1:"Best MCPE Mods",
+    bannerDesc1:"Cool mod collection for MCPE 0.14.3 - 0.15.10",
+    bannerTitle2:"HD Texture Pack",
+    bannerDesc2:"Cool and lightweight textures for Minecraft PE",
+    bannerTitle3:"Launcher & Tools",
+    bannerDesc3:"Toolbox and BlockLauncher for MCPE"
+  }
+};
+
+function t(key){
+  return UI_TEXT[currentLanguage][key] || UI_TEXT.id[key] || key;
+}
+
+function getDesc(item){
+  return currentLanguage === "en" ? (item.desc_en || item.desc_id || "") : (item.desc_id || item.desc_en || "");
+}
+
+function labelCategory(cat){
+  const c = (cat || "").toLowerCase();
+  if(c === "mod") return currentLanguage === "en" ? "MOD" : "MOD";
+  if(c === "texture") return currentLanguage === "en" ? "TEXTURE" : "TEXTURE";
+  if(c === "map") return currentLanguage === "en" ? "MAP" : "MAP";
+  if(c === "launcher") return currentLanguage === "en" ? "LAUNCHER" : "LAUNCHER";
+  return (cat || "").toUpperCase();
+}
+
+function openSidebar(){
+  document.getElementById("sidebar").classList.add("show");
+  document.getElementById("sidebarOverlay").classList.add("show");
+}
+
+function closeSidebar(){
+  document.getElementById("sidebar").classList.remove("show");
+  document.getElementById("sidebarOverlay").classList.remove("show");
+  const box = document.querySelector(".language-dropdown");
+  if(box) box.classList.remove("open");
+}
+
+function toggleLanguageMenu(){
+  const box = document.querySelector(".language-dropdown");
+  if(box) box.classList.toggle("open");
+}
+
+function chooseLanguage(lang){
+  const box = document.querySelector(".language-dropdown");
+  if(box) box.classList.remove("open");
+  setLanguage(lang);
+}
+
+function updateLanguageLabel(){
+  const label = document.getElementById("languageSelectedText");
+  if(!label) return;
+
+  if(currentLanguage === "en"){
+    label.innerText = "🇬🇧 English";
+  }else{
+    label.innerText = "🇮🇩 Indonesia";
+  }
+}
+
+function setText(id, value){
+  const el = document.getElementById(id);
+  if(el) el.innerText = value;
+}
+
+function setLanguage(lang){
+  currentLanguage = lang;
+
+  document.documentElement.lang = lang === "en" ? "en" : "id";
+
+  const searchInput = document.getElementById("search");
+  if(searchInput) searchInput.placeholder = t("search");
+
+  setText("heroTitle", t("heroTitle"));
+  setText("heroSub", t("heroSub"));
+  setText("bannerTitle1", t("bannerTitle1"));
+  setText("bannerDesc1", t("bannerDesc1"));
+  setText("bannerTitle2", t("bannerTitle2"));
+  setText("bannerDesc2", t("bannerDesc2"));
+  setText("bannerTitle3", t("bannerTitle3"));
+  setText("bannerDesc3", t("bannerDesc3"));
+  setText("sideLangTitle", t("langTitle"));
+  setText("sideOfficialTitle", t("officialTitle"));
+  setText("sideAppTitle", t("appTitle"));
+  setText("sideYoutubeText", t("youtube"));
+  setText("sideGmailText", t("gmail"));
+  setText("sideWhatsappText", t("whatsapp"));
+  updateLanguageLabel();
+  setText("infoAppLabel", t("infoApp"));
+  setText("infoVersionLabel", t("infoVersion"));
+  setText("infoUpdateLabel", t("infoUpdate"));
+  setText("infoDevLabel", t("infoDev"));
+  setText("modalFunctionTitle", t("functionTitle"));
+  setText("modalInstallTitle", t("installTitle"));
+  setText("modalCloseBtn", t("close"));
+  setText("tabAll", t("tabAll"));
+  setText("tabMod", t("tabMod"));
+  setText("tabTexture", t("tabTexture"));
+  setText("tabMap", t("tabMap"));
+  setText("tabLauncher", t("tabLauncher"));
+  setText("footerText", t("footer"));
+
+  const versionAll = document.getElementById("versionAll");
+  if(versionAll) versionAll.innerText = t("versionAll");
+
+  closeSidebar();
+  render();
+}
+const list = document.getElementById("list");
+const search = document.getElementById("search");
+const version = document.getElementById("version");
+
+function render(){
+  const keyword = search.value.toLowerCase();
+  const ver = version.value;
+
+  const filtered = data.filter(item => {
+    const matchCategory = currentCategory === "all" || item.category.toLowerCase() === currentCategory.toLowerCase();
+    const matchSearch = item.title.toLowerCase().includes(keyword) || getDesc(item).toLowerCase().includes(keyword);
+    const matchVersion = ver === "all" || item.version === ver;
+    return matchCategory && matchSearch && matchVersion;
+  });
+
+  list.innerHTML = "";
+
+  if(currentCategory === "all"){
+    list.className = "container list-mode";
+  }else{
+    list.className = "container";
+  }
+
+  if(filtered.length === 0){
+    list.innerHTML = `<div class="empty">${t("empty")}</div>`;
+    return;
+  }
+
+  filtered.forEach(item => {
+    const realIndex = data.indexOf(item);
+
+    if(currentCategory === "all"){
+      list.innerHTML += `
+        <div class="list-item">
+          <img src="${item.image}" alt="${item.title}">
+          <div class="list-info">
+            <h3>${item.title}</h3>
+            <p>${getDesc(item)}</p>
+
+            <div class="list-meta">
+              <span class="list-tag">${labelCategory(item.category)}</span>
+              <span class="list-version">MCPE ${item.version}</span>
+            </div>
+
+            <div class="list-actions">
+              <button class="download" onclick="downloadFile(${realIndex})">${t("download")}</button>
+              <button class="detailBtn" onclick="showDetail(${realIndex})">${t("detail")}</button>
+            </div>
+          </div>
+        </div>
+      `;
+    }else{
+      list.innerHTML += `
+        <div class="card">
+          <img src="${item.image}" alt="${item.title}">
+          <div class="info">
+            <h3>${item.title}</h3>
+            <p>${getDesc(item)}</p>
+            <span class="tag">${labelCategory(item.category)} | ${item.version}</span>
+
+            <div class="btns">
+              <button class="download" onclick="downloadFile(${realIndex})">${t("download")}</button>
+              <button class="detailBtn" onclick="showDetail(${realIndex})">${t("detail")}</button>
+            </div>
+          </div>
+        </div>
+      `;
+    }
+  });
+}
+
+function setCategory(cat, btn){
+  currentCategory = cat;
+
+  document.querySelectorAll(".category-card").forEach(b => b.classList.remove("active"));
+  btn.classList.add("active");
+
+  render();
+}
+
+
+function getFileExt(file){
+  return file.split("?")[0].split("#")[0].split(".").pop().toLowerCase();
+}
+
+function getInstallGuide(item){
+  const ext = getFileExt(item.file);
+  const cat = (item.category || "").toLowerCase();
+
+  if(currentLanguage === "en"){
+    if(ext === "js"){
+      return [
+        "Download the script file in .js format.",
+        "Open BlockLauncher.",
+        "Go to Manage ModPE Scripts.",
+        "Choose Import, then find the downloaded .js file.",
+        "Enable the script, then open Minecraft PE."
+      ];
+    }
+
+    if(ext === "zip" && cat === "texture"){
+      return [
+        "Download the texture file in .zip format.",
+        "Open it using ZArchiver or a file manager.",
+        "If it contains a texture folder, extract it first.",
+        "Move it to games/com.mojang/resource_packs or install it from the Texture Pack menu.",
+        "Open MCPE and activate the texture from settings."
+      ];
+    }
+
+    if(ext === "zip" && cat === "map"){
+      return [
+        "Download the map file in .zip format.",
+        "Extract it using ZArchiver.",
+        "Move the map folder to games/com.mojang/minecraftWorlds.",
+        "Open Minecraft PE.",
+        "The map will appear in the world list."
+      ];
+    }
+
+    if(ext === "zip" && cat === "mod"){
+      return [
+        "Download the mod file in .zip format.",
+        "Extract it first using ZArchiver.",
+        "Check the contents; it usually contains a .js script, texture, or mod folder.",
+        "If there is a .js file, import it using BlockLauncher.",
+        "If there is a texture/resource folder, move it to the correct com.mojang folder."
+      ];
+    }
+
+    if(ext === "7z"){
+      return [
+        "Download the file in .7z format.",
+        "Extract it using ZArchiver.",
+        "Check the extracted folder.",
+        "Move files based on their type: maps to minecraftWorlds, textures to resource_packs, .js scripts to BlockLauncher.",
+        "Open MCPE and test if it works."
+      ];
+    }
+
+    if(ext === "apk" || cat === "launcher"){
+      return [
+        "Download the launcher file in .apk format.",
+        "Open the downloaded APK file.",
+        "Allow installation from unknown sources if asked.",
+        "Install the app.",
+        "Open the launcher such as BlockLauncher or Toolbox, then use it for the matching MCPE version."
+      ];
+    }
+
+    return [
+      "Download the file first.",
+      "Open it using ZArchiver or a file manager.",
+      "Check the contents and install it based on the file type.",
+      "Use BlockLauncher for .js scripts, and the com.mojang folder for maps/textures."
+    ];
+  }
+
+  if(ext === "js"){
+    return [
+      "Download file script berformat .js.",
+      "Buka BlockLauncher.",
+      "Masuk ke Manage ModPE Scripts.",
+      "Pilih Import, lalu cari file .js yang sudah didownload.",
+      "Aktifkan script, lalu masuk ke Minecraft PE."
+    ];
+  }
+
+  if(ext === "zip" && cat === "texture"){
+    return [
+      "Download file texture berformat .zip.",
+      "Buka file menggunakan ZArchiver atau file manager.",
+      "Kalau isinya folder texture, ekstrak dulu.",
+      "Pindahkan ke games/com.mojang/resource_packs atau pasang lewat menu Texture Pack.",
+      "Buka MCPE lalu aktifkan texture dari pengaturan."
+    ];
+  }
+
+  if(ext === "zip" && cat === "map"){
+    return [
+      "Download file map berformat .zip.",
+      "Ekstrak file menggunakan ZArchiver.",
+      "Pindahkan folder map ke games/com.mojang/minecraftWorlds.",
+      "Buka Minecraft PE.",
+      "Map akan muncul di daftar world."
+    ];
+  }
+
+  if(ext === "zip" && cat === "mod"){
+    return [
+      "Download file mod berformat .zip.",
+      "Ekstrak dulu menggunakan ZArchiver.",
+      "Cek isi file, biasanya ada script .js, texture, atau folder mod.",
+      "Kalau ada .js, import lewat BlockLauncher.",
+      "Kalau ada texture/resource, pindahkan ke folder com.mojang sesuai instruksi di dalam file."
+    ];
+  }
+
+  if(ext === "7z"){
+    return [
+      "Download file berformat .7z.",
+      "Ekstrak menggunakan ZArchiver.",
+      "Cek isi folder hasil ekstrak.",
+      "Pindahkan file sesuai jenisnya: map ke minecraftWorlds, texture ke resource_packs, script .js ke BlockLauncher.",
+      "Buka MCPE lalu tes apakah sudah aktif."
+    ];
+  }
+
+  if(ext === "apk" || cat === "launcher"){
+    return [
+      "Download file launcher berformat .apk.",
+      "Buka file APK yang sudah didownload.",
+      "Izinkan install dari sumber tidak dikenal jika diminta.",
+      "Install aplikasinya.",
+      "Buka launcher seperti BlockLauncher atau Toolbox lalu gunakan untuk MCPE versi yang sesuai."
+    ];
+  }
+
+  return [
+    "Download file terlebih dahulu.",
+    "Buka file menggunakan ZArchiver atau file manager.",
+    "Cek isi file dan pasang sesuai jenisnya.",
+    "Gunakan BlockLauncher untuk script .js, dan folder com.mojang untuk map/texture."
+  ];
+}
+
+function showDetail(i){
+  const item = data[i];
+  const installSteps = getInstallGuide(item);
+
+  document.getElementById("modalImg").src = item.image;
+  document.getElementById("modalImg").alt = item.title;
+  document.getElementById("modalTitle").innerText = item.title;
+  document.getElementById("modalTag").innerText = labelCategory(item.category) + " | MCPE " + item.version;
+  document.getElementById("modalDesc").innerText = getDesc(item);
+  document.getElementById("modalDownload").onclick = () => downloadFile(i);
+
+  document.getElementById("modalInstall").innerHTML = installSteps.map(step => `<li>${step}</li>`).join("");
+
+  const screensBox = document.getElementById("modalScreens");
+
+  if(item.screens && Array.isArray(item.screens) && item.screens.length > 0){
+    screensBox.style.display = "block";
+
+    screensBox.innerHTML = `
+      <h3>${currentLanguage === "en" ? "Preview" : "Preview"}</h3>
+      <div class="screens-row">
+        <img src="${item.image}" class="active-preview" onclick="setPreviewImage(this,'${item.image.replace(/'/g, "\\'")}')">
+        ${item.screens.map(src => `
+          <img src="${src}" onclick="setPreviewImage(this,'${src.replace(/'/g, "\\'")}')">
+        `).join("")}
+      </div>
+    `;
+  }else{
+    screensBox.style.display = "none";
+    screensBox.innerHTML = "";
+  }
+
+  document.getElementById("detailModal").style.display = "block";
+}
+
+function setPreviewImage(el, src){
+  document.getElementById("modalImg").src = src;
+
+  document.querySelectorAll(".screens-row img").forEach(img => {
+    img.classList.remove("active-preview");
+  });
+
+  el.classList.add("active-preview");
+}
+
+function closeDetail(){
+  document.getElementById("detailModal").style.display = "none";
+}
+
+function closeDetailOutside(event){
+  if(event.target.id === "detailModal"){
+    closeDetail();
+  }
+}
+
+
+
+function sanitizeFileName(name){
+  return name
+    .replace(/[^\w\s-]/g, "")
+    .replace(/\s+/g, "_");
+}
+
+let activeDownloadController = null;
+
+function formatBytes(bytes){
+  if(!bytes || bytes < 0) return "Unknown";
+  if(bytes < 1024) return bytes + " B";
+  if(bytes < 1024 * 1024) return (bytes / 1024).toFixed(1) + " KB";
+  return (bytes / 1024 / 1024).toFixed(2) + " MB";
+}
+
+function openDownloadManager(fileName){
+  document.getElementById("downloadModal").style.display = "block";
+  document.getElementById("dmFile").innerText = fileName;
+  document.getElementById("dmStatus").innerText = currentLanguage === "en" ? "Connecting..." : "Menghubungkan...";
+  document.getElementById("dmBar").style.width = "0%";
+  document.getElementById("dmPercent").innerText = "0%";
+  document.getElementById("dmSize").innerText = "0 MB / Unknown";
+  document.getElementById("dmSpeed").innerText = "0 KB/s";
+  document.getElementById("dmCancelBtn").style.display = "block";
+}
+
+function closeDownloadManager(){
+  document.getElementById("downloadModal").style.display = "none";
+}
+
+function cancelDownloadManager(){
+  if(activeDownloadController){
+    activeDownloadController.abort();
+    activeDownloadController = null;
+  }
+  document.getElementById("dmStatus").innerText = currentLanguage === "en" ? "Download canceled." : "Download dibatalkan.";
+  document.getElementById("dmCancelBtn").style.display = "none";
+}
+
+async function downloadFile(i){
+  const item = data[i];
+  const ext = getFileExt(item.file);
+  const fileName = sanitizeFileName(item.title) + "." + ext;
+
+  openDownloadManager(fileName);
+
+  activeDownloadController = new AbortController();
+  const startTime = Date.now();
+
+  try{
+    const response = await fetch(item.file, {
+      signal: activeDownloadController.signal,
+      cache: "no-store"
+    });
+
+    if(!response.ok){
+      throw new Error("HTTP " + response.status);
+    }
+
+    if(!response.body){
+      throw new Error("ReadableStream not supported");
+    }
+
+    const totalHeader = response.headers.get("Content-Length");
+    const total = totalHeader ? parseInt(totalHeader, 10) : 0;
+    const reader = response.body.getReader();
+    const chunks = [];
+    let received = 0;
+    let fakeProgress = 8;
+
+    document.getElementById("dmStatus").innerText = currentLanguage === "en" ? "Downloading..." : "Mengunduh...";
+
+    while(true){
+      const {done, value} = await reader.read();
+      if(done) break;
+
+      chunks.push(value);
+      received += value.length;
+
+      const seconds = Math.max((Date.now() - startTime) / 1000, 0.1);
+      const speed = received / seconds;
+
+      if(total){
+        const percent = Math.min(100, Math.round((received / total) * 100));
+        document.getElementById("dmBar").style.width = percent + "%";
+        document.getElementById("dmPercent").innerText = percent + "%";
+        document.getElementById("dmSize").innerText = formatBytes(received) + " / " + formatBytes(total);
+      }else{
+        fakeProgress = Math.min(90, fakeProgress + 2);
+        document.getElementById("dmBar").style.width = fakeProgress + "%";
+        document.getElementById("dmPercent").innerText = currentLanguage === "en" ? "Downloading..." : "Mengunduh...";
+        document.getElementById("dmSize").innerText = formatBytes(received) + " / Unknown";
+      }
+
+      document.getElementById("dmSpeed").innerText = formatBytes(speed) + "/s";
+    }
+
+    document.getElementById("dmStatus").innerText = currentLanguage === "en" ? "Saving file..." : "Menyimpan file...";
+    document.getElementById("dmBar").style.width = "100%";
+    document.getElementById("dmPercent").innerText = "100%";
+
+    const blob = new Blob(chunks);
+    const blobUrl = URL.createObjectURL(blob);
+
+    const a = document.createElement("a");
+    a.href = blobUrl;
+    a.download = fileName;
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+
+    URL.revokeObjectURL(blobUrl);
+
+    document.getElementById("dmStatus").innerText = currentLanguage === "en" ? "Download complete." : "Download selesai.";
+    document.getElementById("dmCancelBtn").style.display = "none";
+    activeDownloadController = null;
+
+  }catch(err){
+    if(err.name === "AbortError"){
+      return;
+    }
+
+    document.getElementById("dmStatus").innerText = currentLanguage === "en" ? "Progress not supported. Opening direct link..." : "Progress tidak didukung. Membuka link langsung...";
+    document.getElementById("dmBar").style.width = "100%";
+    document.getElementById("dmPercent").innerText = "Direct";
+    document.getElementById("dmCancelBtn").style.display = "none";
+
+    const a = document.createElement("a");
+    a.href = item.file;
+    a.download = fileName;
+    a.target = "_blank";
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+
+    activeDownloadController = null;
+  }
+}
+
+
+/* STECYMASTER SPLASH SCREEN */
+(function(){
+  const splash = document.getElementById("stecySplash");
+  const percentText = document.getElementById("splashPercent");
+  const loadingText = document.getElementById("splashLoadingText");
+
+  const totalTime = 13000;
+  const start = Date.now();
+  const words = ["LOADING ASSETS", "LOADING MODS", "LOADING TEXTURES", "LOADING MAPS", "LOADING LAUNCHERS"];
+  let wordIndex = 0;
+
+  const wordTimer = setInterval(function(){
+    wordIndex = (wordIndex + 1) % words.length;
+    if(loadingText){
+      loadingText.innerText = words[wordIndex];
+    }
+  }, 1800);
+
+  const percentTimer = setInterval(function(){
+    const elapsed = Date.now() - start;
+    const percent = Math.min(100, Math.floor((elapsed / totalTime) * 100));
+    if(percentText){
+      percentText.innerText = percent + "%";
+    }
+  }, 120);
+
+  function closeSplash(){
+    clearInterval(wordTimer);
+    clearInterval(percentTimer);
+
+    if(percentText){
+      percentText.innerText = "100%";
+    }
+
+    if(splash){
+      splash.classList.add("hide");
+      setTimeout(function(){
+        splash.remove();
+        document.body.classList.remove("splash-lock");
+      }, 700);
+    }else{
+      document.body.classList.remove("splash-lock");
+    }
+  }
+
+  let splashClosed = false;
+
+  function safeCloseSplash(){
+    if(splashClosed) return;
+    splashClosed = true;
+    closeSplash();
+  }
+
+  window.addEventListener("load", function(){
+    setTimeout(safeCloseSplash, totalTime);
+  });
+
+  document.addEventListener("DOMContentLoaded", function(){
+    setTimeout(safeCloseSplash, totalTime + 500);
+  });
+
+  /* Fallback: tetap masuk menu utama walau ada gambar/audio yang lama loading */
+  setTimeout(safeCloseSplash, totalTime + 2500);
+})();
+
+
+/* BANNER SLIDER */
+const slides = document.querySelectorAll(".slide");
+const dots = document.querySelectorAll(".dot");
+const slidesBox = document.getElementById("slides");
+
+let currentSlide = 0;
+let sliderTimer = null;
+let touchStartX = 0;
+
+function showSlide(index){
+  if(!slides.length) return;
+
+  currentSlide = index;
+
+  if(currentSlide < 0){
+    currentSlide = slides.length - 1;
+  }
+
+  if(currentSlide >= slides.length){
+    currentSlide = 0;
+  }
+
+  slides.forEach(s => s.classList.remove("active"));
+  dots.forEach(d => d.classList.remove("active"));
+
+  slides[currentSlide].classList.add("active");
+  dots[currentSlide].classList.add("active");
+}
+
+function nextSlide(){
+  showSlide(currentSlide + 1);
+}
+
+function startSlider(){
+  if(sliderTimer){
+    clearInterval(sliderTimer);
+  }
+
+  sliderTimer = setInterval(nextSlide, 3500);
+}
+
+if(slidesBox){
+  slidesBox.addEventListener("touchstart", function(e){
+    touchStartX = e.touches[0].clientX;
+  }, {passive:true});
+
+  slidesBox.addEventListener("touchend", function(e){
+    const touchEndX = e.changedTouches[0].clientX;
+    const diff = touchStartX - touchEndX;
+
+    if(Math.abs(diff) > 45){
+      if(diff > 0){
+        showSlide(currentSlide + 1);
+      }else{
+        showSlide(currentSlide - 1);
+      }
+
+      startSlider();
+    }
+  }, {passive:true});
+}
+
+startSlider();
+
+search.addEventListener("input", render);
+version.addEventListener("change", render);
+
+
+
+/* BUTTON SOUND EFFECT - Minecraft click from Catbox */
+let stecySoundEnabled = true;
+
+function playClickSound(){
+  if(!stecySoundEnabled) return;
+
+  const sound = document.getElementById("clickSound");
+  if(!sound) return;
+
+  try{
+    sound.pause();
+    sound.currentTime = 0;
+    sound.volume = 0.28;
+    sound.play().catch(function(){});
+  }catch(e){}
+}
+
+document.addEventListener("click", function(e){
+  const target = e.target.closest("button, .category-card, .official-link, .sidebar-link, .language-selected, .language-options button, .download, .detailBtn, .menu-toggle, .sidebar-close");
+  if(target){
+    playClickSound();
+  }
+});
+
+setLanguage("id");
+</script>
+
+</body>
+</html>
