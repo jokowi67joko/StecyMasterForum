@@ -1570,7 +1570,7 @@ body.splash-lock{
     </button>
 
     <div class="logo">
-      <img src="https://files.catbox.moe/l9gby3.png" class="logo-head">
+      <img src="https://files.catbox.moe/gksui4.png" class="logo-head" alt="Logo">
       <span class="logo-orange">Stecy</span><span>Master</span><small>forum</small>
     </div>
   </div>
@@ -2911,6 +2911,12 @@ function openDownloadManager(fileName){
   document.getElementById("dmSize").innerText = "0 MB / Unknown";
   document.getElementById("dmSpeed").innerText = "0 KB/s";
   document.getElementById("dmCancelBtn").style.display = "block";
+  
+  // Reset tombol close agar kembali normal
+  const closeBtn = document.getElementById("dmCloseBtn");
+  closeBtn.innerText = currentLanguage === "en" ? "Close" : "Tutup";
+  closeBtn.style.background = "#333";
+  closeBtn.onclick = closeDownloadManager;
 }
 
 function closeDownloadManager(){
@@ -3009,18 +3015,29 @@ async function downloadFile(i){
       return;
     }
 
-    document.getElementById("dmStatus").innerText = currentLanguage === "en" ? "Progress not supported. Opening direct link..." : "Progress tidak didukung. Membuka link langsung...";
+    /* ANTI POP-UP BLOCKER FALLBACK */
+    document.getElementById("dmStatus").innerText = currentLanguage === "en" ? "Progress blocked. Click button below." : "Gagal memuat progress. Klik tombol di bawah.";
     document.getElementById("dmBar").style.width = "100%";
-    document.getElementById("dmPercent").innerText = "Direct";
+    document.getElementById("dmPercent").innerText = "Ready";
     document.getElementById("dmCancelBtn").style.display = "none";
 
-    const a = document.createElement("a");
-    a.href = item.file;
-    a.download = fileName;
-    a.target = "_blank";
-    document.body.appendChild(a);
-    a.click();
-    a.remove();
+    const closeBtn = document.getElementById("dmCloseBtn");
+    const originalText = closeBtn.innerText;
+    const originalBg = closeBtn.style.background;
+
+    closeBtn.innerText = currentLanguage === "en" ? "Direct Download" : "Download Langsung";
+    closeBtn.style.background = "#22c55e";
+    
+    closeBtn.onclick = function() {
+      window.location.href = item.file;
+      
+      setTimeout(() => {
+        closeDownloadManager();
+        closeBtn.innerText = originalText;
+        closeBtn.style.background = originalBg;
+        closeBtn.onclick = closeDownloadManager;
+      }, 500);
+    };
 
     activeDownloadController = null;
   }
@@ -3088,7 +3105,6 @@ async function downloadFile(i){
     setTimeout(safeCloseSplash, totalTime + 500);
   });
 
-  /* Fallback: tetap masuk menu utama walau ada gambar/audio yang lama loading */
   setTimeout(safeCloseSplash, totalTime + 2500);
 })();
 
@@ -3162,7 +3178,7 @@ version.addEventListener("change", render);
 
 
 
-/* BUTTON SOUND EFFECT - Minecraft click from Catbox */
+/* BUTTON SOUND EFFECT */
 let stecySoundEnabled = true;
 
 function playClickSound(){
